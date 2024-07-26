@@ -55,21 +55,27 @@ let active = 1
 nextBtn.addEventListener('click', function(){
     console.log('nextbtn premuto');
     if (active < imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
-        active ++
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        active ++;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
     }
     else if (active >= imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
         active = 1;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
     }
 })
+
 prevBtn.addEventListener('click', function(){
     console.log('prevbtn premuto');
     if (active > 1){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
-        active --
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        active --;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
+    }
+    else if (active = 1){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        active = imgArray.length;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
     }
 })

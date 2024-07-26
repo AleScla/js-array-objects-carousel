@@ -32,21 +32,21 @@ for (let i = 0; i < imgArray.length; i++){
         carousel.innerHTML += `
         <div class="img-container d-block">
             <img src="${imgArray[i].image}">
-            <div class="bottom-img text-end px-3 mb-4">
+            <div class="bottom-img text-end px-3 mb-5">
                 <h1>${imgArray[i].title}</h1>
                 <p>${imgArray[i].text}</p>
             </div>
-        </div>` ;
+        </div>` 
     }
     else{
         carousel.innerHTML += `
         <div class="img-container">
             <img src="${imgArray[i].image}">
-            <div class="bottom-img text-end px-3 mb-4">
+            <div class="bottom-img text-end px-3 mb-5">
                 <h1>${imgArray[i].title}</h1>
                 <p>${imgArray[i].text}</p>
             </div>
-        </div>` ;
+        </div>` 
     }
     
 }
@@ -54,38 +54,22 @@ for (let i = 0; i < imgArray.length; i++){
 let active = 1
 nextBtn.addEventListener('click', function(){
     console.log('nextbtn premuto');
-    // document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
+    if (active < imgArray.length){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
+        active ++
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+    }
+    else if (active >= imgArray.length){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
+        active = 1;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+    }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  */
+prevBtn.addEventListener('click', function(){
+    console.log('prevbtn premuto');
+    if (active > 1){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block')
+        active --
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block')
+    }
+})

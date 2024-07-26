@@ -1,14 +1,21 @@
-
+main{
+    height:100vh;
+    display:flex;
+    
+    align-items:center;
+}
 #carousel{
-    max-width:1000px;
-    height:400px;
+    width:100%;
+    height:100%;
     margin:auto;
     position:relative;
 }
+
 .img-container{
     width:100%;
     height:100%;
     display:none;
+    
 }
 
 img{
@@ -35,9 +42,34 @@ button{
 #next{
     bottom:0;
 }
+#prev{
+    top:0;
+}
 .my-container{
     position:relative;
+    width:1000px;
+    height:400px;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
 }
 
+
+.thumbnails{
+    height:20%;
+    width:200px;
+    border:1px solid black;
+    opacity:25%;
+    cursor:pointer;
+    
+}
+
+#thumbnails-container{
+    height:100%;
+}
+
+.opacity{
+    opacity:1;
+}
 
 

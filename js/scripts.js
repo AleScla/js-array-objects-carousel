@@ -1,6 +1,7 @@
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const carousel = document.getElementById('carousel');
+const thumbnails = document.getElementById('thumbnails-container')
 
 const imgArray = [
     {
@@ -26,7 +27,7 @@ const imgArray = [
     }
 ];
 
-
+// ciclo che stampa l'array di oggetti in pagina, tenendo solo il primo in d-block (di default d-none)
 for (let i = 0; i < imgArray.length; i++){
     if(i == 0){
         carousel.innerHTML += `
@@ -36,7 +37,11 @@ for (let i = 0; i < imgArray.length; i++){
                 <h1>${imgArray[i].title}</h1>
                 <p>${imgArray[i].text}</p>
             </div>
-        </div>` 
+        </div>`;
+        thumbnails.innerHTML += `
+        <div class="thumbnails opacity">
+            <img src="${imgArray[i].image}" >
+        </div>`
     }
     else{
         carousel.innerHTML += `
@@ -46,36 +51,70 @@ for (let i = 0; i < imgArray.length; i++){
                 <h1>${imgArray[i].title}</h1>
                 <p>${imgArray[i].text}</p>
             </div>
+        </div>`
+        thumbnails.innerHTML += `
+        <div class="thumbnails">
+            <img src="${imgArray[i].image}">
         </div>` 
     }
     
+    
 }
 
+
 let active = 1
-nextBtn.addEventListener('click', function(){
+
+
+    
+
+nextBtn.addEventListener('click', function(){ 
     console.log('nextbtn premuto');
-    if (active < imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        active ++;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-    }
-    else if (active >= imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        active = 1;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-    }
+    nextImg();
+    
 })
 
 prevBtn.addEventListener('click', function(){
     console.log('prevbtn premuto');
+    prevImg()
+})
+
+
+
+
+// funzioni
+function nextImg(){
+    if (active < imgArray.length){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        active ++;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
+        
+    }
+    else if (active >= imgArray.length){
+        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        active = 1;
+        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
+    }
+    
+    
+}
+
+function prevImg(){
     if (active > 1){
         document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
         active --;
         document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
     }
     else if (active = 1){
         document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
         active = imgArray.length;
         document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
+        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
     }
-})
+}

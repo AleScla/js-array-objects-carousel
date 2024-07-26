@@ -1,0 +1,40 @@
+
+#carousel{
+    max-width:1000px;
+    height:400px;
+    margin:auto;
+    position:relative;
+}
+.img-container{
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+img{
+    width: 100%;
+    height:100%;
+    object-fit:cover;
+    object-position:100% 40%;
+}
+
+.bottom-img{
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+
+button{
+    position:absolute;
+    right:50%;
+    transform: translateX(50%);
+}
+
+#next{
+    bottom:0;
+}
+
+
+
+

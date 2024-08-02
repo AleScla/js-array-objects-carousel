@@ -61,16 +61,12 @@ for (let i = 0; i < imgArray.length; i++){
 
 let active = 1;
 
-nextBtn.addEventListener('click', function(){ 
-    console.log('nextbtn premuto');
+nextBtn.addEventListener('click', function(){
     nextImg();
-    console.log(active);
 });
 
 prevBtn.addEventListener('click', function(){
-    console.log('prevbtn premuto');
     prevImg();
-    console.log(active);
 });
 let thumbs = document.querySelectorAll(".thumbnails");
 // ciclo per aggiungere eventlistener alle thumbnails, sfruttando il data-index
@@ -84,6 +80,10 @@ thumbs.forEach(element => {
         }
     });
 });
+
+let clock = setInterval(function(){
+    nextImg()
+}, 3000)
 
     
 // funzioni

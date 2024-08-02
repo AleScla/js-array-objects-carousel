@@ -39,7 +39,7 @@ for (let i = 0; i < imgArray.length; i++){
             </div>
         </div>`;
         thumbnails.innerHTML += `
-        <div class="thumbnails opacity">
+        <div class="thumbnails opacity" data-index-number="${i + 1}">
             <img src="${imgArray[i].image}" >
         </div>`
     }
@@ -53,68 +53,72 @@ for (let i = 0; i < imgArray.length; i++){
             </div>
         </div>`
         thumbnails.innerHTML += `
-        <div class="thumbnails">
+        <div class="thumbnails" data-index-number="${i + 1}">
             <img src="${imgArray[i].image}">
         </div>` 
-    }
-    
-    
+    } 
 }
 
-
-let active = 1
-
-
-    
+let active = 1;
 
 nextBtn.addEventListener('click', function(){ 
     console.log('nextbtn premuto');
     nextImg();
-    
-})
+    console.log(active);
+});
 
 prevBtn.addEventListener('click', function(){
     console.log('prevbtn premuto');
-    prevImg()
-})
+    prevImg();
+    console.log(active);
+});
+let thumbs = document.querySelectorAll(".thumbnails");
+// ciclo per aggiungere eventlistener alle thumbnails, sfruttando il data-index
 
+thumbs.forEach(element => {
+    element.addEventListener("click", function(e) {
+        if (element.dataset.indexNumber != active){
+            hideImg(active);
+            active = element.dataset.indexNumber;
+            showImg(active);
+        }
+    });
+});
 
-
-
+    
 // funzioni
 function nextImg(){
     if (active < imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        hideImg(active)
         active ++;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
-        
+        showImg(active)
     }
     else if (active >= imgArray.length){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        hideImg(active)
         active = 1;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
+        showImg(active)
     }
-    
-    
 }
 
 function prevImg(){
     if (active > 1){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        hideImg(active)
         active --;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
+        showImg(active)
     }
     else if (active = 1){
-        document.querySelector('.img-container:nth-child('+ active +')').classList.remove('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.remove('opacity');
+        hideImg(active)
         active = imgArray.length;
-        document.querySelector('.img-container:nth-child('+ active +')').classList.add('d-block');
-        document.querySelector('.thumbnails:nth-child('+ active +')').classList.add('opacity');
+        showImg(active)
     }
+}
+
+function showImg(index){
+    document.querySelector('.img-container:nth-child('+ index +')').classList.add('d-block');
+    document.querySelector('.thumbnails:nth-child('+ index +')').classList.add('opacity');
+}
+
+function hideImg(index){
+    document.querySelector('.img-container:nth-child('+ index +')').classList.remove('d-block');
+    document.querySelector('.thumbnails:nth-child('+ index +')').classList.remove('opacity');
 }

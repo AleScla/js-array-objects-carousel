@@ -72,10 +72,10 @@ let thumbs = document.querySelectorAll(".thumbnails");
 // ciclo per aggiungere eventlistener alle thumbnails, sfruttando il data-index
 
 thumbs.forEach(element => {
-    element.addEventListener("click", function(e) {
+    element.addEventListener("click", function() {
         if (element.dataset.indexNumber != active){
             hideImg(active);
-            active = element.dataset.indexNumber;
+            active = element.dataset.indexNumber; // questo con dataset.indexNumber vado a prendere il valore in html di data-index-number che ho impostato a indice + 1
             showImg(active);
         }
     });
